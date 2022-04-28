@@ -119,7 +119,7 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Increment the SVN for any official public releases
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.build.svn=1
+    ro.vendor.build.svn=2
 
 # DCK properties based on target
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -152,10 +152,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Bluetooth HAL
 PRODUCT_PACKAGES += \
 	bt_vendor.conf
-
-# Power HAL ADPF
-PRODUCT_VENDOR_PROPERTIES += \
-    vendor.powerhal.adpf.rate=16666666
 
 # Set zram size
 PRODUCT_VENDOR_PROPERTIES += \
@@ -232,3 +228,8 @@ PRODUCT_VENDOR_PROPERTIES += \
 # Device features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
+
+# Keyboard bottom padding in dp for portrait mode and height ratio
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.com.google.ime.kb_pad_port_b=6.4 \
+    ro.com.google.ime.height_ratio=1.05
