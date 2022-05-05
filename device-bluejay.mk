@@ -119,7 +119,7 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Increment the SVN for any official public releases
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.build.svn=1
+    ro.vendor.build.svn=3
 
 # DCK properties based on target
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -153,10 +153,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PACKAGES += \
 	bt_vendor.conf
 
-# Power HAL ADPF
-PRODUCT_VENDOR_PROPERTIES += \
-    vendor.powerhal.adpf.rate=16666666
-
 # Set zram size
 PRODUCT_VENDOR_PROPERTIES += \
     vendor.zram.size=2g
@@ -175,7 +171,8 @@ PRODUCT_PRODUCT_PROPERTIES +=\
 
 # Fingerprint als feed forward
 PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.udfps.als_feed_forward_supported=true
+    persist.vendor.udfps.als_feed_forward_supported=true \
+    persist.vendor.udfps.lhbm_controlled_in_hal_supported=true
 
 # Hide cutout overlays
 PRODUCT_PACKAGES += \
