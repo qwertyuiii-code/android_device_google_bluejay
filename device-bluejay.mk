@@ -119,7 +119,7 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Increment the SVN for any official public releases
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.build.svn=1
+    ro.vendor.build.svn=3
 
 # DCK properties based on target
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -134,6 +134,9 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.display.lbe.supported=1
 # Bluetooth SAR test tool
 PRODUCT_PACKAGES_DEBUG += \
     sar_test
+
+# Config of primary display frames to reach LHBM peak brightness
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.primarydisplay.lhbm.frames_to_reach_peak_brightness=2
 
 # Bluetooth Tx power caps for bluejay
 PRODUCT_COPY_FILES += \
@@ -153,10 +156,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PACKAGES += \
 	bt_vendor.conf
 
-# Power HAL ADPF
-PRODUCT_VENDOR_PROPERTIES += \
-    vendor.powerhal.adpf.rate=16666666
-
 # Set zram size
 PRODUCT_VENDOR_PROPERTIES += \
     vendor.zram.size=2g
@@ -173,6 +172,11 @@ PRODUCT_VENDOR_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES +=\
     persist.vendor.fingerprint.disable.fake.override=none
 
+# Fingerprint als feed forward
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.udfps.als_feed_forward_supported=true \
+    persist.vendor.udfps.lhbm_controlled_in_hal_supported=true
+
 # Hide cutout overlays
 PRODUCT_PACKAGES += \
     NoCutoutOverlay \
@@ -180,7 +184,10 @@ PRODUCT_PACKAGES += \
 
 # SKU specific RROs
 PRODUCT_PACKAGES += \
-    SettingsOverlayGB17L
+    SettingsOverlayGB17L \
+    SettingsOverlayG1AZG \
+    SettingsOverlayGB62Z \
+    SettingsOverlayGX7AS
 
 # Set support hide display cutout feature
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -221,3 +228,12 @@ PRODUCT_SHIPPING_API_LEVEL := 32
 # Vibrator HAL
 PRODUCT_VENDOR_PROPERTIES += \
 	ro.vendor.vibrator.hal.supported_primitives=243
+
+# Device features
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
+
+# Keyboard bottom padding in dp for portrait mode and height ratio
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.com.google.ime.kb_pad_port_b=6.4 \
+    ro.com.google.ime.height_ratio=1.05
