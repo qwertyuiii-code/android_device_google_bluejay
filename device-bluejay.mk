@@ -119,7 +119,7 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Increment the SVN for any official public releases
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.build.svn=2
+    ro.vendor.build.svn=3
 
 # DCK properties based on target
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -134,6 +134,9 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.display.lbe.supported=1
 # Bluetooth SAR test tool
 PRODUCT_PACKAGES_DEBUG += \
     sar_test
+
+# Config of primary display frames to reach LHBM peak brightness
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.primarydisplay.lhbm.frames_to_reach_peak_brightness=2
 
 # Bluetooth Tx power caps for bluejay
 PRODUCT_COPY_FILES += \
@@ -171,7 +174,8 @@ PRODUCT_PRODUCT_PROPERTIES +=\
 
 # Fingerprint als feed forward
 PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.udfps.als_feed_forward_supported=true
+    persist.vendor.udfps.als_feed_forward_supported=true \
+    persist.vendor.udfps.lhbm_controlled_in_hal_supported=true
 
 # Hide cutout overlays
 PRODUCT_PACKAGES += \
