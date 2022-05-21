@@ -143,9 +143,18 @@
       "Path": "/proc/vendor_sched/ta_uclamp_min",
       "Values": [
         "553",
-        "129",
+        "185",
         "1",
         "55"
+      ],
+      "ResetOnInit": true
+    },
+    {
+      "Name": "FGUClampBoost",
+      "Path": "/proc/vendor_sched/fg_uclamp_min",
+      "Values": [
+        "161",
+        "0"
       ],
       "ResetOnInit": true
     },
@@ -167,6 +176,24 @@
           "512"
       ],
       "DefaultIndex": 0,
+      "ResetOnInit": true
+    },
+    {
+      "Name": "UClampThreshold",
+      "Path": "/proc/vendor_sched/uclamp_threshold",
+      "Values": [
+        "0",
+        "8"
+      ],
+      "ResetOnInit": true
+    },
+    {
+      "Name": "ReduceRreferIdle",
+      "Path": "/proc/vendor_sched/reduce_prefer_idle",
+      "Values": [
+        "0",
+        "1"
+      ],
       "ResetOnInit": true
     },
     {
@@ -254,9 +281,10 @@
       "Name": "FGPreferIdle",
       "Path": "/proc/vendor_sched/fg_prefer_idle",
       "Values": [
-        "0",
-        "1"
+        "1",
+        "0"
       ],
+      "DefaultIndex": 0,
       "ResetOnInit": true
     },
     {
@@ -265,6 +293,15 @@
       "Values": [
         "1",
         "0"
+      ],
+      "ResetOnInit": true
+    },
+    {
+      "Name": "NPITaskPacking",
+      "Path": "/proc/vendor_sched/npi_packing",
+      "Values": [
+        "0",
+        "1"
       ],
       "ResetOnInit": true
     },
@@ -462,6 +499,24 @@
     },
     {
       "PowerHint": "LAUNCH",
+      "Node": "UClampThreshold",
+      "Duration": 5000,
+      "Value": "0"
+    },
+    {
+      "PowerHint": "LAUNCH",
+      "Node": "ReduceRreferIdle",
+      "Duration": 5000,
+      "Value": "0"
+    },
+    {
+      "PowerHint": "LAUNCH",
+      "Node": "FGPreferIdle",
+      "Duration": 5000,
+      "Value": "1"
+    },
+    {
+      "PowerHint": "LAUNCH",
       "Node": "SFUClampBoost",
       "Duration": 5000,
       "Value": "85"
@@ -492,6 +547,12 @@
     },
     {
       "PowerHint": "LAUNCH",
+      "Node": "FGUClampBoost",
+      "Duration": 5000,
+      "Value": "161"
+    },
+    {
+      "PowerHint": "LAUNCH",
       "Node": "MemFreq",
       "Duration": 5000,
       "Value": "3172000"
@@ -501,6 +562,12 @@
       "Node": "GPUPowerPolicy",
       "Duration": 5000,
       "Value": "always_on"
+    },
+    {
+      "PowerHint": "LAUNCH",
+      "Node": "NPITaskPacking",
+      "Duration": 5000,
+      "Value": "0"
     },
     {
       "PowerHint": "DISPLAY_INACTIVE",
@@ -557,6 +624,12 @@
       "Value": "4-7"
     },
     {
+      "PowerHint": "CAMERA_LAUNCH",
+      "Node": "NPITaskPacking",
+      "Duration": 1000,
+      "Value": "0"
+    },
+    {
       "PowerHint": "CAMERA_LAUNCH_EXTENDED",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 2000,
@@ -573,6 +646,12 @@
       "Node": "CPULittleClusterMaxFreq",
       "Duration": 2000,
       "Value": "9999999"
+    },
+    {
+      "PowerHint": "CAMERA_LAUNCH_EXTENDED",
+      "Node": "NPITaskPacking",
+      "Duration": 2000,
+      "Value": "0"
     },
     {
       "PowerHint": "CAMERA_THERMAL_CPU_THROTTLE",
@@ -827,6 +906,12 @@
       "Value": "4-7"
     },
     {
+      "PowerHint": "CAMERA_STREAMING_EXTREME",
+      "Node": "NPITaskPacking",
+      "Duration": 0,
+      "Value": "0"
+    },
+    {
       "PowerHint": "CAMERA_STREAMING_HIGH",
       "Node": "CPUUtilThreshold",
       "Duration": 0,
@@ -905,6 +990,12 @@
       "Value": "4-7"
     },
     {
+      "PowerHint": "CAMERA_STREAMING_HIGH",
+      "Node": "NPITaskPacking",
+      "Duration": 0,
+      "Value": "0"
+    },
+    {
       "PowerHint": "CAMERA_STREAMING_STANDARD",
       "Node": "CDPreferHighCap",
       "Duration": 0,
@@ -969,6 +1060,12 @@
       "Node": "CDMidHighCpusetCpus",
       "Duration": 0,
       "Value": "4-7"
+    },
+    {
+      "PowerHint": "CAMERA_STREAMING_STANDARD",
+      "Node": "NPITaskPacking",
+      "Duration": 0,
+      "Value": "0"
     },
     {
       "PowerHint": "CAMERA_STREAMING_LOW",
@@ -1041,6 +1138,12 @@
       "Node": "CDMidHighCpusetCpus",
       "Duration": 0,
       "Value": "4-7"
+    },
+    {
+      "PowerHint": "CAMERA_STREAMING_LOW",
+      "Node": "NPITaskPacking",
+      "Duration": 0,
+      "Value": "0"
     },
     {
       "PowerHint": "FIXED_PERFORMANCE",
@@ -1210,7 +1313,7 @@
       "PowerHint": "BOOST_60HZ",
       "Node": "TAUClampBoost",
       "Duration": 200,
-      "Value": "129"
+      "Value": "185"
     },
     {
       "PowerHint": "DISPLAY_IDLE",
@@ -1239,11 +1342,6 @@
       "Node": "DisplayWakeup",
       "Duration": 50,
       "Value": "1"
-    },
-    {
-      "PowerHint": "DISPLAY_UPDATE_IMMINENT",
-      "Type": "DoHint",
-      "Value": "BOOST_DISPLAY"
     },
     {
       "PowerHint": "THERMAL_FLASH_LED_REDUCE_CRITICAL",
@@ -1505,7 +1603,6 @@
       "PID_Do": 500.0,
       "PID_Du": 0.0,
       "UclampMin_On": true,
-      "UclampMin_Granularity": 5,
       "UclampMin_High": 384,
       "UclampMin_Low": 2,
       "SamplingWindow_P": 1,
@@ -1529,7 +1626,6 @@
       "PID_Do": 500.0,
       "PID_Du": 0.0,
       "UclampMin_On": true,
-      "UclampMin_Granularity": 5,
       "UclampMin_High": 384,
       "UclampMin_Low": 2,
       "SamplingWindow_P": 1,
@@ -1553,7 +1649,6 @@
       "PID_Do": 500.0,
       "PID_Du": 0.0,
       "UclampMin_On": true,
-      "UclampMin_Granularity": 5,
       "UclampMin_High": 384,
       "UclampMin_Low": 2,
       "SamplingWindow_P": 1,
@@ -1580,7 +1675,6 @@
       "SamplingWindow_I": 1,
       "SamplingWindow_D": 1,
       "UclampMin_On": true,
-      "UclampMin_Granularity": 0,
       "UclampMin_High": 157,
       "UclampMin_Low": 157,
       "ReportingRateLimitNs": 1,
@@ -1604,7 +1698,6 @@
       "SamplingWindow_I": 1,
       "SamplingWindow_D": 1,
       "UclampMin_On": true,
-      "UclampMin_Granularity": 0,
       "UclampMin_High": 42,
       "UclampMin_Low": 42,
       "ReportingRateLimitNs": 1,
@@ -1628,7 +1721,6 @@
       "SamplingWindow_I": 1,
       "SamplingWindow_D": 1,
       "UclampMin_On": true,
-      "UclampMin_Granularity": 0,
       "UclampMin_High": 0,
       "UclampMin_Low": 0,
       "ReportingRateLimitNs": 1,
