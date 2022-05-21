@@ -119,7 +119,7 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Increment the SVN for any official public releases
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.build.svn=1
+    ro.vendor.build.svn=3
 
 # DCK properties based on target
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -131,9 +131,13 @@ PRODUCT_SOONG_NAMESPACES += vendor/google_devices/bluejay/prebuilts
 # Display LBE
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.display.lbe.supported=1
 
-# Bluetooth SAR test tool
+# Bluetooth Hal Extension test tools
 PRODUCT_PACKAGES_DEBUG += \
-    sar_test
+    sar_test \
+    hci_inject
+
+# Config of primary display frames to reach LHBM peak brightness
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.primarydisplay.lhbm.frames_to_reach_peak_brightness=2
 
 # Bluetooth Tx power caps for bluejay
 PRODUCT_COPY_FILES += \
@@ -153,10 +157,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PACKAGES += \
 	bt_vendor.conf
 
-# Power HAL ADPF
-PRODUCT_VENDOR_PROPERTIES += \
-    vendor.powerhal.adpf.rate=16666666
-
 # Set zram size
 PRODUCT_VENDOR_PROPERTIES += \
     vendor.zram.size=2g
@@ -175,7 +175,8 @@ PRODUCT_PRODUCT_PROPERTIES +=\
 
 # Fingerprint als feed forward
 PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.udfps.als_feed_forward_supported=true
+    persist.vendor.udfps.als_feed_forward_supported=true \
+    persist.vendor.udfps.lhbm_controlled_in_hal_supported=true
 
 # Hide cutout overlays
 PRODUCT_PACKAGES += \
@@ -197,22 +198,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.support_one_handed_mode=true
 
-# Voice packs for Text-To-Speech
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/tts/ja-jp/ja-jp-x-multi-darwinn-wavernn-r27.zvoice:product/tts/google/ja-jp/ja-jp-x-multi-darwinn-wavernn-r27.zvoice\
-	$(LOCAL_PATH)/tts/ja-jp/ja-jp-x-multi-r27.zvoice:product/tts/google/ja-jp/ja-jp-x-multi-r27.zvoice\
-	$(LOCAL_PATH)/tts/ja-jp/ja-jp-x-multi-wavernn-r27.zvoice:product/tts/google/ja-jp/ja-jp-x-multi-wavernn-r27.zvoice\
-	$(LOCAL_PATH)/tts/fr-fr/fr-fr-x-multi-darwinn-wavernn-r27.zvoice:product/tts/google/fr-fr/fr-fr-x-multi-darwinn-wavernn-r27.zvoice\
-	$(LOCAL_PATH)/tts/fr-fr/fr-fr-x-multi-r27.zvoice:product/tts/google/fr-fr/fr-fr-x-multi-r27.zvoice\
-	$(LOCAL_PATH)/tts/fr-fr/fr-fr-x-multi-wavernn-r27.zvoice:product/tts/google/fr-fr/fr-fr-x-multi-wavernn-r27.zvoice\
-	$(LOCAL_PATH)/tts/de-de/de-de-x-multi-darwinn-wavernn-r27.zvoice:product/tts/google/de-de/de-de-x-multi-darwinn-wavernn-r27.zvoice\
-	$(LOCAL_PATH)/tts/de-de/de-de-x-multi-r27.zvoice:product/tts/google/de-de/de-de-x-multi-r27.zvoice\
-	$(LOCAL_PATH)/tts/de-de/de-de-x-multi-wavernn-r27.zvoice:product/tts/google/de-de/de-de-x-multi-wavernn-r27.zvoice\
-	$(LOCAL_PATH)/tts/it-it/it-it-x-multi-r24.zvoice:product/tts/google/it-it/it-it-x-multi-r24.zvoice\
-	$(LOCAL_PATH)/tts/es-es/es-es-x-multi-darwinn-wavernn-r27.zvoice:product/tts/google/es-es/es-es-x-multi-darwinn-wavernn-r27.zvoice\
-	$(LOCAL_PATH)/tts/es-es/es-es-x-multi-r27.zvoice:product/tts/google/es-es/es-es-x-multi-r27.zvoice\
-	$(LOCAL_PATH)/tts/es-es/es-es-x-multi-wavernn-r27.zvoice:product/tts/google/es-es/es-es-x-multi-wavernn-r27.zvoice
-
 # GPS xml
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 	PRODUCT_COPY_FILES += \
@@ -232,3 +217,8 @@ PRODUCT_VENDOR_PROPERTIES += \
 # Device features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
+
+# Keyboard bottom padding in dp for portrait mode and height ratio
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.com.google.ime.kb_pad_port_b=6.4 \
+    ro.com.google.ime.height_ratio=1.05
