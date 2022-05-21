@@ -131,9 +131,10 @@ PRODUCT_SOONG_NAMESPACES += vendor/google_devices/bluejay/prebuilts
 # Display LBE
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.display.lbe.supported=1
 
-# Bluetooth SAR test tool
+# Bluetooth Hal Extension test tools
 PRODUCT_PACKAGES_DEBUG += \
-    sar_test
+    sar_test \
+    hci_inject
 
 # Config of primary display frames to reach LHBM peak brightness
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += vendor.primarydisplay.lhbm.frames_to_reach_peak_brightness=2
@@ -196,22 +197,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Set support one-handed mode
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.support_one_handed_mode=true
-
-# Voice packs for Text-To-Speech
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/tts/ja-jp/ja-jp-x-multi-darwinn-wavernn-r27.zvoice:product/tts/google/ja-jp/ja-jp-x-multi-darwinn-wavernn-r27.zvoice\
-	$(LOCAL_PATH)/tts/ja-jp/ja-jp-x-multi-r27.zvoice:product/tts/google/ja-jp/ja-jp-x-multi-r27.zvoice\
-	$(LOCAL_PATH)/tts/ja-jp/ja-jp-x-multi-wavernn-r27.zvoice:product/tts/google/ja-jp/ja-jp-x-multi-wavernn-r27.zvoice\
-	$(LOCAL_PATH)/tts/fr-fr/fr-fr-x-multi-darwinn-wavernn-r27.zvoice:product/tts/google/fr-fr/fr-fr-x-multi-darwinn-wavernn-r27.zvoice\
-	$(LOCAL_PATH)/tts/fr-fr/fr-fr-x-multi-r27.zvoice:product/tts/google/fr-fr/fr-fr-x-multi-r27.zvoice\
-	$(LOCAL_PATH)/tts/fr-fr/fr-fr-x-multi-wavernn-r27.zvoice:product/tts/google/fr-fr/fr-fr-x-multi-wavernn-r27.zvoice\
-	$(LOCAL_PATH)/tts/de-de/de-de-x-multi-darwinn-wavernn-r27.zvoice:product/tts/google/de-de/de-de-x-multi-darwinn-wavernn-r27.zvoice\
-	$(LOCAL_PATH)/tts/de-de/de-de-x-multi-r27.zvoice:product/tts/google/de-de/de-de-x-multi-r27.zvoice\
-	$(LOCAL_PATH)/tts/de-de/de-de-x-multi-wavernn-r27.zvoice:product/tts/google/de-de/de-de-x-multi-wavernn-r27.zvoice\
-	$(LOCAL_PATH)/tts/it-it/it-it-x-multi-r24.zvoice:product/tts/google/it-it/it-it-x-multi-r24.zvoice\
-	$(LOCAL_PATH)/tts/es-es/es-es-x-multi-darwinn-wavernn-r27.zvoice:product/tts/google/es-es/es-es-x-multi-darwinn-wavernn-r27.zvoice\
-	$(LOCAL_PATH)/tts/es-es/es-es-x-multi-r27.zvoice:product/tts/google/es-es/es-es-x-multi-r27.zvoice\
-	$(LOCAL_PATH)/tts/es-es/es-es-x-multi-wavernn-r27.zvoice:product/tts/google/es-es/es-es-x-multi-wavernn-r27.zvoice
 
 # GPS xml
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
