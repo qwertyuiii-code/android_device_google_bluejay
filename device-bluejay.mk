@@ -119,7 +119,7 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Increment the SVN for any official public releases
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.build.svn=3
+    ro.vendor.build.svn=5
 
 # DCK properties based on target
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -177,6 +177,10 @@ PRODUCT_PRODUCT_PROPERTIES +=\
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.udfps.als_feed_forward_supported=true \
     persist.vendor.udfps.lhbm_controlled_in_hal_supported=true
+
+# Fingerprint MAX auth latency
+PRODUCT_VENDOR_PROPERTIES += \
+    vendor.gf.debug.timer.threshold=1,400,400,400,600,600,600
 
 # Hide cutout overlays
 PRODUCT_PACKAGES += \
