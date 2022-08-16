@@ -72,7 +72,8 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.camera.extended_launch_boost=1 \
-    persist.vendor.camera.raise_buf_allocation_priority=1
+    persist.vendor.camera.raise_buf_allocation_priority=1 \
+    persist.vendor.camera.fixed_fps_range_boost=1
 
 # Display Config
 PRODUCT_COPY_FILES += \
@@ -119,7 +120,7 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Increment the SVN for any official public releases
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.build.svn=3
+    ro.vendor.build.svn=16
 
 # DCK properties based on target
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -169,6 +170,10 @@ PRODUCT_VENDOR_PROPERTIES += \
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.camera.exif_reveal_make_model=true
 
+# Disable rear light sensor probing explicitly
+PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.camera.rls_supported=false
+
 # Fingerprint antispoof property
 PRODUCT_PRODUCT_PROPERTIES +=\
     persist.vendor.fingerprint.disable.fake.override=none
@@ -177,6 +182,10 @@ PRODUCT_PRODUCT_PROPERTIES +=\
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.udfps.als_feed_forward_supported=true \
     persist.vendor.udfps.lhbm_controlled_in_hal_supported=true
+
+# Fingerprint MAX auth latency
+PRODUCT_VENDOR_PROPERTIES += \
+    vendor.gf.debug.timer.threshold=1,400,400,400,600,600,600
 
 # Hide cutout overlays
 PRODUCT_PACKAGES += \
