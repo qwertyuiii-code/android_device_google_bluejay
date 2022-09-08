@@ -72,8 +72,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.camera.extended_launch_boost=1 \
-    persist.vendor.camera.raise_buf_allocation_priority=1 \
-    persist.vendor.camera.fixed_fps_range_boost=1
+    persist.vendor.camera.raise_buf_allocation_priority=1
 
 # Display Config
 PRODUCT_COPY_FILES += \
@@ -120,7 +119,7 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Increment the SVN for any official public releases
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.build.svn=13
+    ro.vendor.build.svn=5
 
 # DCK properties based on target
 PRODUCT_PROPERTY_OVERRIDES += \
