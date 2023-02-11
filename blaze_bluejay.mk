@@ -16,11 +16,18 @@
 
 $(call inherit-product, device/google/gs101/aosp_common.mk)
 $(call inherit-product, device/google/bluejay/device-bluejay.mk)
+$(call inherit-product, vendor/blaze/config/common_full_phone.mk)
+TARGET_BOOT_ANIMATION_RES := 1080
 
-PRODUCT_NAME := aosp_bluejay
+PRODUCT_NAME := blaze_bluejay
 PRODUCT_DEVICE := bluejay
-PRODUCT_MODEL := AOSP on Bluejay
+PRODUCT_MODEL := Pixel 6A
 PRODUCT_BRAND := Android
 PRODUCT_MANUFACTURER := Google
 
 PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
+
+BLAZE_BUILD_TYPE := OFFICIAL
+BLAZE_MAINTAINER := Chikoni_UwU
+
+

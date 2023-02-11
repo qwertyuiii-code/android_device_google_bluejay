@@ -15,9 +15,10 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_bluejay.mk \
-    $(LOCAL_DIR)/factory_bluejay.mk
+    $(LOCAL_DIR)/blaze_bluejay.mk \
 
 
 COMMON_LUNCH_CHOICES := \
-    aosp_bluejay-userdebug
+    aosp_bluejay-userdebug \
+    aosp_bluejay-user \
+    aosp_bluejay-eng 
